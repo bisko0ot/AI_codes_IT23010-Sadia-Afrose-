@@ -1,0 +1,50 @@
+##Basic Programs in Prolog.
+
+1.Maximum and Minimum of Two Numbers
+
+
+Prolog Code
+find_max(X, Y, X) :- X >= Y, !.
+find_max(X, Y, Y) :- X < Y.
+
+find_min(X, Y, X) :- X =< Y, !.
+find_min(X, Y, Y) :- X > Y.
+
+Query
+?- find_min(40, 10, Min).
+?- find_max(40, 10, Max).
+
+
+
+2.Resistance of Resistive Circuits:
+
+Rules:
+Series: Re = R1 + R2
+Parallel: Re = (R1 * R2) / (R1 + R2)
+
+Calculation:
+R3 = (10 * 40) / (10 + 40) = 400 / 50 = 8 Ohm
+R4 = R3 + 12 = 8 + 12 = 20 Ohm
+R5 = (20 * 30) / (20 + 30) = 600 / 50 = 12 Ohm
+
+Prolog Code:
+series(R1,R2,Re) :- Re is R1 + R2.
+parallel(R1,R2,Re) :- Re is ((R1 * R2) / (R1 + R2)).
+Query:
+?- parallel(10,40,R3).
+?- series(8,12,R4).
+
+3.Horizontal and Vertical Line Segments:
+
+Prolog Code
+vertical(seg(point(X,_), point(X,_))).
+horizontal(seg(point(_,Y), point(_,Y))).
+oblique(seg(point(X1,Y1), point(X2,Y2))) :-
+    X1 \== X2,
+    Y1 \== Y2.
+
+Query
+?- horizontal(seg(point(10,20), point(15,20))).
+?- vertical(seg(point(10,20), point(10,30))).
+?- oblique(seg(point(10,20), point(15,30))).
+?- oblique(seg(point(10,20), point(15,20))).
